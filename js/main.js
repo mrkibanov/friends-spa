@@ -26,11 +26,13 @@ require.config({
 require([
     'backbone',
     'routers/router',
-    'collections/friends'
-], function (Backbone, AppRouter, Friends) {
+    'collections/friends',
+    'views/navbarView',
+], function (Backbone, AppRouter, Friends, Navbar) {
     Friends.getData();
     Friends.deferred.done(function () {
         new AppRouter();
+        new Navbar();
         Backbone.history.start();
     });
 

@@ -10,15 +10,17 @@ define([
     'views/searchInputView',
     'views/searchResultsView',
     'views/mainView',
-    'views/pageHeaderView'
-], function ($, _, Backbone, friendListView , friendPageView, searchInput, searchResults,               MainView, pageHeaderView) {
+    'views/pageHeaderView',
+    'views/aboutView'
+], function ($, _, Backbone, friendListView , friendPageView, searchInput, searchResults,               MainView, pageHeaderView, aboutView) {
     'use strict';
     var FriendsRouter = Backbone.Router.extend({
         routes: {
             '' : 'index',
             'friends' : 'displayFriends',
             'friend/:id' : 'gotoSingleFriend',
-            'search' : 'search'
+            'search' : 'search',
+            'about' : 'about'
         },
 
         index: function () {
@@ -40,6 +42,12 @@ define([
         search: function () {
             new pageHeaderView({title: 'Search'}).render();
             var view = [new searchInput, new searchResults()];
+            new MainView({view : view}).render();
+        },
+
+        about: function () {
+            new pageHeaderView({title: 'About'}).render();
+            var view = [new aboutView];
             new MainView({view : view}).render();
         }
 

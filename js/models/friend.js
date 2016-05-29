@@ -11,7 +11,7 @@ define([
            secondName: '',
            birthDate: '',
            city: ''
-        },
+        }
     });
 
     return Friend;
