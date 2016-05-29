@@ -10,3 +10,4 @@ Firstly, install dependecies
 
 - `bower install`
 - `npm install`
+After dependecies installed, use `npm start` to serve files on port:8080
