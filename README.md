@@ -1,4 +1,4 @@
-# friends-spa
+A test task - SPA
 
 Frameworks and Libraries
 =============
