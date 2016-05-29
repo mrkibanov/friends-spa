@@ -4,7 +4,7 @@ define([
     'backbone',
     'collections/friends',
     'bootstrap'
-], function ($, _, Backbone, Friends, Bootstrap) {
+], function ($, _, Backbone, Friends) {
     'use strict';
 
     var searchInput = Backbone.View.extend({
@@ -14,7 +14,7 @@ define([
             placeholder: 'Type name',
             'data-toggle': 'tooltip',
             'data-placement': 'top',
-            title: 'Type at least 3 characters !'
+            title: 'Type at least 2 characters !'
         },
         events: {
             'keyup' : 'getResults'
@@ -26,17 +26,17 @@ define([
             });
 
             var inputVal = this.$el.val();
-            if(inputVal.length >= 3) {
-                this.hideTooltip();
+            if(inputVal.length >= 2) {
+                this.Tooltip('hide');
                 Friends.performSearch(inputVal.toLowerCase());
             }
             else if(inputVal.length === 0)
-                this.hideTooltip();
+                this.Tooltip('hide');
             else
-                this.$el.tooltip('show');
+                this.Tooltip('show');
         },
-        hideTooltip: function () {
-            this.$el.tooltip('hide');
+        Tooltip: function (render) {
+            render === 'show'? this.$el.tooltip('show') : this.$el.tooltip('hide');
         }
 
     });

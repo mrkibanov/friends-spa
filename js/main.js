@@ -27,13 +27,17 @@ require([
     'backbone',
     'routers/router',
     'collections/friends',
-    'views/navbarView',
+    'views/navbarView'
 ], function (Backbone, AppRouter, Friends, Navbar) {
     Friends.getData();
-    Friends.deferred.done(function () {
-        new AppRouter();
-        new Navbar();
-        Backbone.history.start();
-    });
+    Friends.deferred
+        .done(function () {
+            new AppRouter();
+            new Navbar();
+            Backbone.history.start();
+        })
+        .fail(function () {
+           throw 'Cannot get Friends data';
+        });
 
 });

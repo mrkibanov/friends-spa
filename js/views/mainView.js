@@ -1,10 +1,8 @@
 define([
     'jquery',
     'underscore',
-    'backbone',
-    'views/friendsView',
-    'collections/friends'
-], function ($, _, Backbone, friendsView, Friends) {
+    'backbone'
+], function ($, _, Backbone) {
     'use strict';
 
     var AppView = Backbone.View.extend({
@@ -12,7 +10,6 @@ define([
 
         initialize: function (options) {
             this.viewToRender = options.view;
-            // this.listenTo(Friends, 'reset', this.render);
         },
 
         render: function () {

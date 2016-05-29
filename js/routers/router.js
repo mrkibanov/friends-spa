@@ -12,7 +12,7 @@ define([
     'views/mainView',
     'views/pageHeaderView',
     'views/aboutView'
-], function ($, _, Backbone, friendListView , friendPageView, searchInput, searchResults,               MainView, pageHeaderView, aboutView) {
+], function ($, _, Backbone, friendListView , friendPageView, searchInput, searchResults, MainView, pageHeaderView, aboutView) {
     'use strict';
     var FriendsRouter = Backbone.Router.extend({
         routes: {
@@ -26,29 +26,29 @@ define([
         index: function () {
             this.navigate('friends', true);
         },
+        goto: function (view, pageTitle) {
+            new pageHeaderView({title: pageTitle}).render();
+            new MainView({view : view}).render();
+        },
 
         displayFriends : function () {
-            new pageHeaderView({title: 'Friends'}).render();
-            var view = [new friendListView()];
-            new MainView({view : view}).render();
+            var localView = [new friendListView()];
+            this.goto(localView, 'Friends');
         },
 
         gotoSingleFriend: function (id) {
-            var view = [new friendPageView({id: id})];
-            new pageHeaderView({title: 'Friend: ' + view[0].friendId.get('name')}).render();
-            new MainView({view : view}).render();
+            var localView = [new friendPageView({id: id})];
+            this.goto(localView, 'Friend: ' + localView[0].friendId.get('name'));
         },
         
         search: function () {
-            new pageHeaderView({title: 'Search'}).render();
-            var view = [new searchInput, new searchResults()];
-            new MainView({view : view}).render();
+            var localView = [new searchInput, new searchResults()];
+            this.goto(localView, 'Search');
         },
 
         about: function () {
-            new pageHeaderView({title: 'About'}).render();
-            var view = [new aboutView];
-            new MainView({view : view}).render();
+            var localView = [new aboutView];
+            this.goto(localView, 'About');
         }
 
     });
