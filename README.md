@@ -12,4 +12,5 @@ Firstly, install dependecies
 - `npm install`
 
 After dependecies installed, use `npm start`
+
 And navigate to localhost:8080
